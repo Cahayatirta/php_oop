@@ -15,7 +15,7 @@ class percobaan {
 }
 
 class CetakInfo{
-    public function cetak($info){
+    public function cetak( percobaan $info){
         $str = "{$info->test()} {$info->harga}";
         return $str;
     }
