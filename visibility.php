@@ -2,8 +2,9 @@
 class Produk {
     public $judul,
            $penulis,
-           $penerbit,
-           $harga;
+           $penerbit;
+    protected $diskon = 0;
+    private $harga;
 
     public function __construct($judul = "Judul", $penulis = "penulis", $penerbit = "Penerbit", $harga = "0") {
         $this->judul = $judul;
@@ -11,6 +12,7 @@ class Produk {
         $this->penerbit = $penerbit;
         $this->harga = $harga;
     }
+
     public function getlabel(){
         return "$this->penulis, $this->penerbit";
     }
@@ -23,6 +25,14 @@ class Produk {
         //     $str .= " - {$this->waktumain} Jam";
         // }
         return $str;
+    }
+    
+    public function setdiskon($diskon){
+        $this->diskon = $diskon;
+    }
+
+    public function getharga(){
+        return $this->harga - ($this->harga * $this->diskon / 100);
     }
 }
 class Komik extends Produk{
@@ -61,6 +71,10 @@ $p2 = new Game("Uncharted" ," gak tau juga"," Gak tau", "5500", "50");
 var_dump($p1->getinfoproduk());
 echo "<br>";
 echo $p2->getinfoproduk();
+echo "<hr>";
+$p2->setdiskon(50);
+echo $p2->getharga();
+
 
 
 
